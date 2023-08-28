@@ -1,7 +1,7 @@
 # BojioFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
-Master template github link: https://github.com/primefaces/sakai-ng
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0. <br />
+Master template github link: https://github.com/primefaces/sakai-ng <br />
 Master template demo link: https://www.primefaces.org/sakai-ng/#/
 
 ## Install dependencies
