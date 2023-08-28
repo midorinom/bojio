@@ -1,0 +1,19 @@
+{
+  "name": "bojio_frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/midorinom/bojio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/midorinom/bojio/issues"
+  },
+  "homepage": "https://github.com/midorinom/bojio#readme"
+}
