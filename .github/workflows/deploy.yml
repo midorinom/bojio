@@ -28,7 +28,7 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
         REMOTE_HOST: "ec2-3-1-206-9.ap-southeast-1.compute.amazonaws.com"
         REMOTE_USER: "ubuntu"
-        TARGET: "/bojio"
+        TARGET: "/home/ubuntu/bojio"
 
 
     - name: Use Node.js ${{ matrix.node-version }}
