@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { DemoService } from './service/demo.service';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
+        DemoService
     ],
     bootstrap: [AppComponent],
 })

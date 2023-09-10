@@ -10,6 +10,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
     imports: [
         RouterModule.forRoot([
             { path: '', loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule) },
+            { path: 'demo', loadChildren: () => import('./pages/demo_crud/demo-crud.module').then(m => m.DemoCrudModule) },
             {
                 // For pages that use the dashboard layout
                 path: '', component: AppLayoutComponent,
