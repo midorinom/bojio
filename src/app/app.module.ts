@@ -11,7 +11,6 @@ import { ChartModule } from 'primeng/chart';
 import { DividerModule } from 'primeng/divider';
 import { PanelModule } from 'primeng/panel';
 import { StyleClassModule } from 'primeng/styleclass';
-import { LandingRoutingModule } from './pages/landing/landing-routing.module';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
@@ -24,28 +23,29 @@ import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
-import { DemoCrudRoutingModule } from './pages/demo_crud/demo-crud-routing.module';
 import { DemoCrudComponent } from './pages/demo_crud/demo-crud.component';
+import { LoginComponent } from './pages/landing/login/login.component';
+import { RegisterComponent } from './pages/landing/register/register.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NotfoundComponent,
         LandingComponent,
-        DemoCrudComponent
+        DemoCrudComponent,
+        LoginComponent,
+        RegisterComponent
     ],
     imports: [
         AppRoutingModule,
         AppLayoutModule,
         CommonModule,
-        LandingRoutingModule,
         DividerModule,
         StyleClassModule,
         ChartModule,
         PanelModule,
         ButtonModule,
         CommonModule,
-        DemoCrudRoutingModule,
         ToastModule,
         ToolbarModule,
         TableModule,
