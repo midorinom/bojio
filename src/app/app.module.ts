@@ -26,6 +26,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DemoCrudComponent } from './pages/demo_crud/demo-crud.component';
 import { LoginComponent } from './pages/landing/login/login.component';
 import { RegisterComponent } from './pages/landing/register/register.component';
+import { AccountService } from './service/account.service';
 
 @NgModule({
     declarations: [
@@ -61,7 +62,7 @@ import { RegisterComponent } from './pages/landing/register/register.component';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        DemoService
+        DemoService, AccountService
     ],
     bootstrap: [AppComponent],
 })
