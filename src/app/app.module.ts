@@ -27,6 +27,8 @@ import { DemoCrudComponent } from './pages/demo_crud/demo-crud.component';
 import { LoginComponent } from './pages/landing/login/login.component';
 import { RegisterComponent } from './pages/landing/register/register.component';
 import { AccountService } from './service/account.service';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
     declarations: [
@@ -40,6 +42,8 @@ import { AccountService } from './service/account.service';
     imports: [
         AppRoutingModule,
         AppLayoutModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
         CommonModule,
         DividerModule,
         StyleClassModule,
