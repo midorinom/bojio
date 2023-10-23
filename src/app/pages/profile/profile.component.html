@@ -1,0 +1,27 @@
+<div class="profile">
+    <div class="profile-header">
+        <img class="profile-picture" [src]="userProfile.pictureUrl" alt="Profile Picture" width="200" height="200">
+        <div class="profile-info">
+            <h1>{{ userProfile.username }}</h1>
+            <p>{{ userProfile.location }}</p>
+        </div>
+    </div>
+    <div class="profile-bio">
+        <h2>Bio</h2>
+        <p>{{ userProfile.bio }}</p>
+    </div>
+    <div class="profile-details">
+        <h2>Additional Details</h2>
+        <ul>
+            <li><strong>Email:</strong> {{ userProfile.email }}</li>
+            <li><strong>Phone:</strong> {{ userProfile.phone }}</li>
+            <li><strong>hobbies:</strong> {{ userProfile.hobby }}, {{ userProfile.hobby2 }}, {{ userProfile.hobby3 }}</li>
+        </ul>
+    </div>
+    <div class="profile-actions">
+        <div class="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">
+            <button pButton pRipple label="Edit" class="p-button-rounded border-none ml-5 font-light line-height-2 bg-blue-500 text-blue"></button>
+            <button pButton pRipple label="Cancel" class="p-button-rounded border-none ml-5 font-light line-height-2 bg-blue-500 text-white"></button>
+        </div>
+    </div>
+</div>

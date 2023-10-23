@@ -11,12 +11,17 @@
                 <ul class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
                     <li>
                         <a (click)="this.redirect('/')" pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
-                           <span>Home</span>
+                            <span>Home</span>
                         </a>
                     </li>
                     <li>
                         <a (click)="this.redirect('/demo')" pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
                             <span>Demo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="this.redirect('/profile')" pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
+                            <span>Profile</span>
                         </a>
                     </li>
                 </ul>
@@ -26,9 +31,7 @@
                 </div>
             </div>
         </div>
-
         <router-outlet></router-outlet>
-    
         <div class="py-4 px-4 mx-0 mt-8 lg:mx-8">
             <div class="grid justify-content-between">
                 <div class="col-12 md:col-2" style="margin-top:-1.5rem;">
@@ -37,7 +40,6 @@
                         <h4 class="font-medium text-3xl text-900">SAKAI</h4>
                     </a>
                 </div>
-    
                 <div class="col-12 md:col-10 lg:col-7">
                     <div class="grid text-center md:text-left">
                         <div class="col-12 md:col-3">
@@ -48,22 +50,19 @@
                             <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Careers</a>
                             <a class="line-height-3 text-xl block cursor-pointer text-700">Media Kit</a>
                         </div>
-                        
                         <div class="col-12 md:col-3 mt-4 md:mt-0">
                             <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Resources</h4>
                             <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Get Started</a>
                             <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Learn</a>
                             <a class="line-height-3 text-xl block cursor-pointer text-700">Case Studies</a>
                         </div>
-        
                         <div class="col-12 md:col-3 mt-4 md:mt-0">
                             <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Community</h4>
                             <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Discord</a>
-                            <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Events<img src="assets/images/new-badge.svg" class="ml-2"/></a>
+                            <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Events<img src="assets/images/new-badge.svg" class="ml-2" /></a>
                             <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">FAQ</a>
                             <a class="line-height-3 text-xl block cursor-pointer text-700">Blog</a>
                         </div>
-        
                         <div class="col-12 md:col-3 mt-4 md:mt-0">
                             <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Legal</h4>
                             <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Brand Policy</a>
