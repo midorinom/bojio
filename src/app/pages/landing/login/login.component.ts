@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interface/user';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit{
     username: string = ""
     password: string = ""
 
-    constructor(public layoutService: LayoutService, public router: Router, private accountService: AccountService) { }
+    constructor(public layoutService: LayoutService, public router: Router, private accountService: AccountService,private ngZone: NgZone) { }
 
     ngOnInit(): void {
         
@@ -31,8 +31,25 @@ export class LoginComponent implements OnInit{
         this.accountService.login(loginUser).then(response => {
             if(response){
                 loginResponse = response;
-                console.log(loginResponse)
+
+                console.log(response);
+                
+                let responseStatus = response.status;
+                let responseMessage = response.message;
+
+                if(responseStatus!="error"){
+                    sessionStorage.setItem("loggedIn", this.username);
+                    this.redirect("/");
+                }else{
+
+                }
             }
         });
+    }
+
+    redirect(to:string){
+        this.ngZone.run(()=>this.router.navigateByUrl(to).then(()=> {
+            window.location.reload();
+        }));
     }
 }

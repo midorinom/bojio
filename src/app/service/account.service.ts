@@ -21,4 +21,10 @@ export class AccountService {
         .then(response => response)
         .catch(error => error)
     }
+
+    async logout(){
+        return await lastValueFrom(this.http.get<any>(ServiceURL + 'logout', { observe: 'response' }))
+        .then(response => response)
+        .catch(error => error)
+    }
 }
