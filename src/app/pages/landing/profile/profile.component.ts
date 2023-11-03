@@ -43,7 +43,6 @@ export class ProfileComponent {
         this.accountService.getProfile(this.loginUser).then(response => {
             if(response){
                 this.username = response.body.data.username;
-                this.password = response.body.data.password;
                 this.email = response.body.data.email;
             }
         });
@@ -58,6 +57,21 @@ export class ProfileComponent {
         }
 
         this.accountService.updateProfile(registerUser).then(response => {
+            if(response){
+                console.log(response);
+            }
+        });
+    }
+
+    editPassword(): void{
+        let registerUser: User = {
+            user_id: this.loginUser.user_id,
+            username: this.username,
+            password: this.password,
+            email: this.email,
+        }
+
+        this.accountService.editPassword(registerUser).then(response => {
             if(response){
                 console.log(response);
             }
