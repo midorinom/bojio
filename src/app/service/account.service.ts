@@ -27,4 +27,16 @@ export class AccountService {
         .then(response => response)
         .catch(error => error)
     }
+
+    async getProfile(){
+        return await lastValueFrom(this.http.get<any>(ServiceURL + 'profile', { observe: 'response' }))
+        .then(response => response)
+        .catch(error => error)
+    }
+
+    async updateProfile(account: User){
+        return await lastValueFrom(this.http.post<any>(ServiceURL + 'profile',account, { observe: 'response' }))
+        .then(response => response)
+        .catch(error => error)
+    }
 }

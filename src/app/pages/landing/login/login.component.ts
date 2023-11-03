@@ -34,11 +34,13 @@ export class LoginComponent implements OnInit{
 
                 console.log(response);
                 
-                let responseStatus = response.status;
-                let responseMessage = response.message;
+                let responseStatus = response.body.status;
+                console.log(responseStatus);
+                let responseMessage = response.body.message;
+                console.log(responseMessage);
 
                 if(responseStatus!="error"){
-                    sessionStorage.setItem("loggedIn", this.username);
+                    sessionStorage.setItem("loggedIn", JSON.stringify(loginUser));
                     this.redirect("/");
                 }else{
 

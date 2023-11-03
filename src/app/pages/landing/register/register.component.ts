@@ -5,7 +5,7 @@ import { AccountService } from 'src/app/service/account.service';
 import { User } from 'src/app/interface/user';
 
 @Component({
-    selector: 'app-landing',
+    selector: 'register',
     templateUrl: './register.component.html'
 })
 export class RegisterComponent {
@@ -36,6 +36,8 @@ export class RegisterComponent {
             if(response){
                 registerResponse = response;
                 console.log(registerResponse)
+
+                this.router.navigateByUrl("login");
             }
         });
 
