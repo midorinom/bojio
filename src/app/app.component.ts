@@ -2,6 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { LayoutService } from './layout/service/app.layout.service';
+import { AccountService } from './service/account.service';
 
 @Component({
     selector: 'app-root',
@@ -9,7 +10,9 @@ import { LayoutService } from './layout/service/app.layout.service';
 })
 export class AppComponent implements OnInit{
 
-    constructor(private primengConfig: PrimeNGConfig,public layoutService: LayoutService, public router: Router, private ngZone: NgZone) { }
+    constructor(private primengConfig: PrimeNGConfig,public layoutService: LayoutService, public router: Router, private ngZone: NgZone, private accountService: AccountService) { }
+
+    loggedIn:boolean | undefined;
 
     ngOnInit() {
         this.checkLoginSession();
@@ -22,7 +25,17 @@ export class AppComponent implements OnInit{
         }));
     }
 
+    logout(){
+        this.accountService.logout().then(response => {
+            if(response){
+                sessionStorage.removeItem("loggedIn");
+                this.redirect("/");
+            }
+        });
+    }
+
     private checkLoginSession(){
-        console.log("Checked");
+        console.log(sessionStorage.getItem("loggedIn"));
+        this.loggedIn = sessionStorage.getItem("loggedIn") ? true : false;
     }
 }

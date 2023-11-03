@@ -27,6 +27,7 @@ import { DemoCrudComponent } from './pages/demo_crud/demo-crud.component';
 import { LoginComponent } from './pages/landing/login/login.component';
 import { RegisterComponent } from './pages/landing/register/register.component';
 import { AccountService } from './service/account.service';
+import { ProfileComponent } from './pages/landing/profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { AccountService } from './service/account.service';
         LandingComponent,
         DemoCrudComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        ProfileComponent
     ],
     imports: [
         AppRoutingModule,
