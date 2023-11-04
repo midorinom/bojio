@@ -28,6 +28,9 @@ import { LoginComponent } from './pages/landing/login/login.component';
 import { RegisterComponent } from './pages/landing/register/register.component';
 import { AccountService } from './service/account.service';
 import { ProfileComponent } from './pages/landing/profile/profile.component';
+import { EventComponent } from './pages/events/event.component';
+import { EditEventComponent } from './pages/events/edit/edit-event.component';
+import { CreateEventComponent } from './pages/events/create/create-event.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +40,10 @@ import { ProfileComponent } from './pages/landing/profile/profile.component';
         DemoCrudComponent,
         LoginComponent,
         RegisterComponent,
-        ProfileComponent
+        ProfileComponent,
+        EventComponent,
+        EditEventComponent,
+        CreateEventComponent
     ],
     imports: [
         AppRoutingModule,
