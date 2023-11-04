@@ -31,6 +31,9 @@ import { ProfileComponent } from './pages/landing/profile/profile.component';
 import { EventComponent } from './pages/events/event.component';
 import { EditEventComponent } from './pages/events/edit/edit-event.component';
 import { CreateEventComponent } from './pages/events/create/create-event.component';
+import { DataViewModule } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
     declarations: [
@@ -66,7 +69,10 @@ import { CreateEventComponent } from './pages/events/create/create-event.compone
         DropdownModule,
         RadioButtonModule,
         InputNumberModule,
-        RatingModule
+        RatingModule,
+        DataViewModule,
+        TagModule,
+        CalendarModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

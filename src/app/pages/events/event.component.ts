@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
@@ -8,6 +8,11 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 })
 export class EventComponent {
 
-    constructor(public layoutService: LayoutService, public router: Router) { }
+    constructor(public layoutService: LayoutService, public router: Router, private ngZone: NgZone) { }
     
+    redirect(to:string){
+        this.ngZone.run(()=>this.router.navigateByUrl(to).then(()=> {
+            window.location.reload();
+        }));
+    }
 }
