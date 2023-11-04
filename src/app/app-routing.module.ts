@@ -5,6 +5,7 @@ import { DemoCrudComponent } from './pages/demo_crud/demo-crud.component';
 import { LoginComponent } from './pages/landing/login/login.component';
 import { RegisterComponent } from './pages/landing/register/register.component';
 import { ProfileComponent } from './pages/landing/profile/profile.component';
+import { mustLoginGuard, mustLoggedOutGuard, bothOKGuard } from './service/route-guard.service';
 
 // const routes: Routes = [];
 
@@ -12,11 +13,11 @@ import { ProfileComponent } from './pages/landing/profile/profile.component';
     // imports: [RouterModule.forRoot(routes)],
     imports: [
         RouterModule.forRoot([
-            { path: '', component: LandingComponent },
-            { path: 'demo', component: DemoCrudComponent },
-            { path: 'login', component: LoginComponent },
-            { path: 'register', component: RegisterComponent },
-            { path: 'profile', component: ProfileComponent },
+            { path: '', component: LandingComponent, canActivate: [bothOKGuard] },
+            { path: 'demo', component: DemoCrudComponent, canActivate: [bothOKGuard] },
+            { path: 'login', component: LoginComponent, canActivate: [mustLoggedOutGuard] },
+            { path: 'register', component: RegisterComponent, canActivate: [mustLoggedOutGuard] },
+            { path: 'profile', component: ProfileComponent, canActivate: [mustLoginGuard] },
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
     ],
     exports: [RouterModule],

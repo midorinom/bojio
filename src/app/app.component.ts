@@ -35,7 +35,18 @@ export class AppComponent implements OnInit{
     }
 
     private checkLoginSession(){
-        console.log(sessionStorage.getItem("loggedIn"));
+        // console.log(sessionStorage.getItem("loggedIn"));
         this.loggedIn = sessionStorage.getItem("loggedIn") ? true : false;
+
+        // this.accountService.getSession().then(response => {
+        //     switch (response.status) {
+        //         case 200:
+        //             this.loggedIn = true
+        //             break;
+        //         case 401:
+        //             this.loggedIn = false
+        //             break;
+        //     }
+        // });
     }
 }
