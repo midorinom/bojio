@@ -16,7 +16,7 @@ export class AccountService {
     }
 
     async register(account: User){
-        return await lastValueFrom(this.http.post<any>(ServiceURL + 'register',account, { observe: 'response' }))
+        return await lastValueFrom(this.http.post<any>(ServiceURL + 'register',account, { withCredentials: true, observe: 'response' }))
         .then(response => response)
         .catch(error => error)
     }
