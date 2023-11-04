@@ -7,6 +7,7 @@
         <div class="col-4"><!--Empty Block--></div>
         <div class="col-4 mt-3 flex align-items-center">
             <div class="col-12 p-0">
+                <h6>Email:</h6>
                 <span class="p-input-icon-left" style="display:block!important;">
                     <i class="pi pi-envelope"></i>
                     <input
@@ -16,9 +17,9 @@
             </div>
         </div>
         <div class="col-4"><!--Empty Block--></div>
-        <div class="col-4"><!--Empty Block--></div>
-        <div class="col-4 mt-3 flex align-items-center">
+        <div class="col-4 flex align-items-center">
             <div class="col-12 p-0">
+                <h6>Username:</h6>
                 <span class="p-input-icon-left" style="display:block!important;">
                     <i class="pi pi-user"></i>
                     <input
@@ -27,13 +28,29 @@
                 </span>
             </div>
         </div>
-        <div class="col-4"><!--Empty Block--></div>
+    </div>
+</div>
+
+<div class="px-4 py-4 mx-0 mb-2">
+    <div class="grid justify-content-center">
+        <button pbutton="" pripple="" label="Edit Profile" class="p-element p-ripple p-button p-component" (click)="editProfile()"><span class="p-button-label">Edit Profile</span><span class="p-ink"></span></button>
+    </div>
+    
+</div>
+
+<hr>
+
+<div class="px-4 mx-0 lg:mx-8">
+    <div class="grid justify-content-center">
+        <div class="col-12 text-center mt-4 mb-3">
+            <h2 class="text-900 font-normal mb-2">Change Password</h2>
+        </div>
         <div class="col-4 mt-3 flex align-items-center">
             <div class="col-12 p-0">
                 <span class="p-input-icon-left" style="display:block!important;">
-                    <i class="pi pi-lock"></i>
+                    <i class="pi pi-envelope"></i>
                     <input
-                        type="password" pinputtext="" placeholder="Password" [value]="password"
+                        type="password" pinputtext="" placeholder="Password"
                         class="p-inputtext p-component p-element" style="width:100%;" [(ngModel)]="password" required>
                 </span>
             </div>
@@ -43,7 +60,7 @@
 
 <div class="px-4 py-4 mx-0">
     <div class="grid justify-content-center">
-        <button pbutton="" pripple="" label="Edit Profile" class="p-element p-ripple p-button p-component" (click)="editProfile()"><span class="p-button-label">Edit Profile</span><span class="p-ink"></span></button>
+        <button pbutton="" pripple="" label="Edit Profile" class="p-element p-ripple p-button p-component" (click)="editPassword()"><span class="p-button-label">Edit Password</span><span class="p-ink"></span></button>
     </div>
     
 </div>
