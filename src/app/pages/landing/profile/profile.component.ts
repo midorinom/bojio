@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AccountService } from 'src/app/service/account.service';
@@ -23,20 +23,9 @@ export class ProfileComponent {
     constructor(public layoutService: LayoutService, public router: Router, private accountService: AccountService) { }
 
     ngOnInit(): void {
-        this.verifyLoginDetails();
-        this.populateProfileDetails();
-    }
-
-
-    verifyLoginDetails():void{
-        try{
-            this.loginUser = JSON.parse(sessionStorage["loggedIn"]);
-
-            console.log(this.loginUser);
-        }catch{
-            this.router.navigateByUrl("/");
+        if (sessionStorage.getItem("loggedIn")) {
+            this.populateProfileDetails();
         }
-
     }
 
     populateProfileDetails(): void{

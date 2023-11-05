@@ -8,6 +8,7 @@ import { ProfileComponent } from './pages/landing/profile/profile.component';
 import { EventComponent } from './pages/events/event.component';
 import { CreateEventComponent } from './pages/events/create/create-event.component';
 import { EditEventComponent } from './pages/events/edit/edit-event.component';
+import { mustLoginGuard, mustLoggedOutGuard, bothOKGuard } from './service/route-guard.service';
 
 // const routes: Routes = [];
 
@@ -15,14 +16,15 @@ import { EditEventComponent } from './pages/events/edit/edit-event.component';
     // imports: [RouterModule.forRoot(routes)],
     imports: [
         RouterModule.forRoot([
-            { path: '', component: LandingComponent },
-            { path: 'demo', component: DemoCrudComponent },
-            { path: 'login', component: LoginComponent },
-            { path: 'register', component: RegisterComponent },
-            { path: 'profile', component: ProfileComponent },
-            { path: 'event', component: EventComponent },
-            { path: 'event/create', component: CreateEventComponent },
-            { path: 'event/edit', component: EditEventComponent },
+            { path: '', component: LandingComponent, canActivate: [bothOKGuard] },
+            { path: 'demo', component: DemoCrudComponent, canActivate: [bothOKGuard] },
+            { path: 'login', component: LoginComponent, canActivate: [mustLoggedOutGuard] },
+            { path: 'register', component: RegisterComponent, canActivate: [mustLoggedOutGuard] },
+            { path: 'profile', component: ProfileComponent, canActivate: [mustLoginGuard] },
+            { path: 'event', component: EventComponent, canActivate: [mustLoginGuard] },
+            { path: 'event/create', component: CreateEventComponent, canActivate: [mustLoginGuard] },
+            { path: 'event/edit', component: EditEventComponent, canActivate: [mustLoginGuard] },
+            
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
     ],
     exports: [RouterModule],

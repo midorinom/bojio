@@ -39,10 +39,8 @@ export class LoginComponent implements OnInit{
                 let responseMessage = response.body.message;
                 console.log(responseMessage);
 
-                loginUser.user_id = response.body.id;
-
                 if(responseStatus!="error"){
-                    sessionStorage.setItem("loggedIn", JSON.stringify(loginUser));
+                    sessionStorage.setItem("loggedIn", "true");
                     this.redirect("/");
                 }else{
 
