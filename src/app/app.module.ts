@@ -34,6 +34,7 @@ import { CreateEventComponent } from './pages/events/create/create-event.compone
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { CalendarModule } from 'primeng/calendar';
+import { EventService } from './service/event.service';
 
 @NgModule({
     declarations: [
@@ -76,7 +77,7 @@ import { CalendarModule } from 'primeng/calendar';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        DemoService, AccountService
+        DemoService, AccountService, EventService
     ],
     bootstrap: [AppComponent],
 })
