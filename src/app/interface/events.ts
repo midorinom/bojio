@@ -3,8 +3,8 @@ export interface Event{
     host_id?: number;
     title: string;
     description: string;
-    start_date: Date;
-    end_date: Date;
+    start_date: string;
+    end_date: string;
     location: string;
     capacity: number;
     price: number;

@@ -23,7 +23,7 @@ export class EventComponent implements OnInit{
             if(response){
                 console.log(response);
 
-                this.eventList = response.body;
+                this.eventList = response.body.data;
             }
         });
     }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule, DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppLayoutModule } from './layout/app.layout.module';
@@ -77,7 +77,7 @@ import { EventService } from './service/event.service';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        DemoService, AccountService, EventService
+        DemoService, AccountService, EventService, DatePipe
     ],
     bootstrap: [AppComponent],
 })
