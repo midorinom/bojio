@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
@@ -6,8 +6,12 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
     selector: 'edit-event',
     templateUrl: './edit-event.component.html'
 })
-export class EditEventComponent {
+export class EditEventComponent implements OnInit{
 
     constructor(public layoutService: LayoutService, public router: Router) { }
     
+    ngOnInit(): void {
+        
+    }
+
 }

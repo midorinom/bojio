@@ -40,10 +40,9 @@ export class ProfileComponent {
     }
 
     populateProfileDetails(): void{
-        this.accountService.getProfile(this.loginUser).then(response => {
+        this.accountService.getProfile().then(response => {
             if(response){
-                this.username = response.body.data.username;
-                this.email = response.body.data.email;
+                console.log(response);
             }
         });
     }

@@ -28,20 +28,20 @@ export class AccountService {
         .catch(error => error)
     }
 
-    async getProfile(account: User){
-        return await lastValueFrom(this.http.post<any>(ServiceURL + 'profile', account,{ observe: 'response' }))
+    async getProfile(){
+        return await lastValueFrom(this.http.get<any>(ServiceURL + 'profile',{withCredentials: true, observe: 'response' }))
         .then(response => response)
         .catch(error => error)
     }
 
     async updateProfile(account: User){
-        return await lastValueFrom(this.http.post<any>(ServiceURL + 'updateprofile',account, { observe: 'response' }))
+        return await lastValueFrom(this.http.post<any>(ServiceURL + 'updateprofile',account, {withCredentials: true, observe: 'response' }))
         .then(response => response)
         .catch(error => error)
     }
 
     async editPassword(account: User){
-        return await lastValueFrom(this.http.post<any>(ServiceURL + 'change_password',account, { observe: 'response' }))
+        return await lastValueFrom(this.http.post<any>(ServiceURL + 'change_password',account, {withCredentials: true, observe: 'response' }))
         .then(response => response)
         .catch(error => error)
     }
