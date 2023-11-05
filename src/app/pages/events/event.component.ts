@@ -11,6 +11,9 @@ import { EventService } from 'src/app/service/event.service';
 export class EventComponent implements OnInit{
 
     eventList: Event[] = [];
+    loadedEventList: boolean = true;
+    loadedHostEventList: boolean = false;
+    loadedAttendingEventList: boolean = false;
 
     constructor(public layoutService: LayoutService, public router: Router, private ngZone: NgZone, private eventService: EventService) { }
 
@@ -21,7 +24,33 @@ export class EventComponent implements OnInit{
     loadEventList(): void{
         this.eventService.getAllAvailableEvents().then(response => {
             if(response){
-                console.log(response);
+                this.loadedEventList = true;
+                this.loadedHostEventList = false;
+                this.loadedAttendingEventList = false;
+
+                this.eventList = response.body.data;
+            }
+        });
+    }
+
+    loadHostingEventList(): void{
+        this.eventService.getAllHostedEvents().then(response => {
+            if(response){
+                this.loadedEventList = false;
+                this.loadedHostEventList = true;
+                this.loadedAttendingEventList = false;
+
+                this.eventList = response.body.data;
+            }
+        });
+    }
+
+    loadAttendingEventList(): void{
+        this.eventService.getAllAttendingEvents().then(response => {
+            if(response){
+                this.loadedEventList = false;
+                this.loadedHostEventList = false;
+                this.loadedAttendingEventList = true;
 
                 this.eventList = response.body.data;
             }
