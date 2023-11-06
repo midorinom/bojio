@@ -16,12 +16,11 @@ import { mustLoginGuard, mustLoggedOutGuard, bothOKGuard } from './service/route
     // imports: [RouterModule.forRoot(routes)],
     imports: [
         RouterModule.forRoot([
-            { path: '', component: LandingComponent, canActivate: [bothOKGuard] },
+            { path: '', component: EventComponent, canActivate: [bothOKGuard] },
             { path: 'demo', component: DemoCrudComponent, canActivate: [bothOKGuard] },
             { path: 'login', component: LoginComponent, canActivate: [mustLoggedOutGuard] },
             { path: 'register', component: RegisterComponent, canActivate: [mustLoggedOutGuard] },
             { path: 'profile', component: ProfileComponent, canActivate: [mustLoginGuard] },
-            { path: 'event', component: EventComponent, canActivate: [mustLoginGuard] },
             { path: 'event/create', component: CreateEventComponent, canActivate: [mustLoginGuard] },
             { path: 'event/edit', component: EditEventComponent, canActivate: [mustLoginGuard] },
             

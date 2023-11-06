@@ -12,6 +12,7 @@ import { EventService } from 'src/app/service/event.service';
 })
 export class EventComponent implements OnInit{
 
+    isLoggedIn: boolean = false;
     eventList: Event[] = [];
     loadedEventList: boolean = true;
     loadedHostEventList: boolean = false;
@@ -23,11 +24,29 @@ export class EventComponent implements OnInit{
     constructor(public layoutService: LayoutService, public router: Router, private ngZone: NgZone, private eventService: EventService, private messageService: MessageService) { }
 
     ngOnInit(): void {
-        this.loadEventList();
+        this.checkLogin();
+        console.log(this.isLoggedIn);
+        this.isLoggedIn ? this.loadEventList() : this.loadAllEventsList();
+    }
+
+    checkLogin():void{
+        this.isLoggedIn = sessionStorage.getItem("loggedIn") ? true : false;
     }
 
     loadEventList(): void{
         this.eventService.getAllAvailableEvents().then(response => {
+            if(response){
+                this.loadedEventList = true;
+                this.loadedHostEventList = false;
+                this.loadedAttendingEventList = false;
+
+                this.eventList = response.body.data;
+            }
+        });
+    }
+
+    loadAllEventsList(): void{
+        this.eventService.getAllEvents().then(response => {
             if(response){
                 this.loadedEventList = true;
                 this.loadedHostEventList = false;

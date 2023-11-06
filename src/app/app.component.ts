@@ -29,6 +29,7 @@ export class AppComponent implements OnInit{
         this.accountService.logout().then(response => {
             if(response){
                 sessionStorage.removeItem("loggedIn");
+                sessionStorage.clear();
                 this.redirect("/");
             }
         });
