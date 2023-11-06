@@ -21,7 +21,7 @@ import { mustLoginGuard, mustLoggedOutGuard, bothOKGuard } from './service/route
             { path: 'register', component: RegisterComponent, canActivate: [mustLoggedOutGuard] },
             { path: 'profile', component: ProfileComponent, canActivate: [mustLoginGuard] },
             { path: 'event/create', component: CreateEventComponent, canActivate: [mustLoginGuard] },
-            { path: 'event/edit', component: EditEventComponent, canActivate: [mustLoginGuard] },
+            //{ path: 'event/edit', component: EditEventComponent, canActivate: [mustLoginGuard] },
             
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
     ],
