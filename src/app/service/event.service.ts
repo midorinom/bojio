@@ -9,6 +9,12 @@ export class EventService {
 
     constructor(private http: HttpClient) { }
 
+    async getAllEvents() {
+        return await lastValueFrom(this.http.get<any>(ServiceURL + 'event/all-events', { withCredentials: true, observe: 'response' }))
+            .then(response => response)
+            .catch(error => error)
+    }
+
     async getAllAvailableEvents() {
         return await lastValueFrom(this.http.get<any>(ServiceURL + 'event/all-available-events', { withCredentials: true, observe: 'response' }))
             .then(response => response)

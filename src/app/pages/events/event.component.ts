@@ -12,21 +12,41 @@ import { EventService } from 'src/app/service/event.service';
 })
 export class EventComponent implements OnInit{
 
+    isLoggedIn: boolean = false;
     eventList: Event[] = [];
     loadedEventList: boolean = true;
     loadedHostEventList: boolean = false;
     loadedAttendingEventList: boolean = false;
+    showWithdrawEventDialog: boolean = false;
     showDeleteEventDialog: boolean = false;
     selectedEvent?: Event
 
     constructor(public layoutService: LayoutService, public router: Router, private ngZone: NgZone, private eventService: EventService, private messageService: MessageService) { }
 
     ngOnInit(): void {
-        this.loadEventList();
+        this.checkLogin();
+        console.log(this.isLoggedIn);
+        this.isLoggedIn ? this.loadEventList() : this.loadAllEventsList();
+    }
+
+    checkLogin():void{
+        this.isLoggedIn = sessionStorage.getItem("loggedIn") ? true : false;
     }
 
     loadEventList(): void{
         this.eventService.getAllAvailableEvents().then(response => {
+            if(response){
+                this.loadedEventList = true;
+                this.loadedHostEventList = false;
+                this.loadedAttendingEventList = false;
+
+                this.eventList = response.body.data;
+            }
+        });
+    }
+
+    loadAllEventsList(): void{
+        this.eventService.getAllEvents().then(response => {
             if(response){
                 this.loadedEventList = true;
                 this.loadedHostEventList = false;
@@ -95,7 +115,7 @@ export class EventComponent implements OnInit{
     }
 
     quitEvent(event: Event) {
-        this.showDeleteEventDialog = true;
+        this.showWithdrawEventDialog = true;
         this.selectedEvent = event;
     }
 
@@ -105,7 +125,7 @@ export class EventComponent implements OnInit{
                 case 200:
                     // Remove event from list
                     this.eventList = this.eventList.filter(val => val.event_id !== this.selectedEvent!.event_id);
-                    this.showDeleteEventDialog = false;
+                    this.showWithdrawEventDialog = false;
                     this.messageService.add({ severity: 'success', summary: 'Withdrawal successful', detail: 'If you change your mind, you can find the event in the "All Events" tab', life: 3000 });
                     break;
                 case 401:
@@ -116,9 +136,42 @@ export class EventComponent implements OnInit{
                         case 'already_withdrawn':
                             // Remove event from list
                             this.eventList = this.eventList.filter(val => val.event_id !== this.selectedEvent!.event_id);
-                            this.showDeleteEventDialog = false;
+                            this.showWithdrawEventDialog = false;
                             this.messageService.add({ severity: 'error', summary: 'Oops', detail: 'Event capacity has been reached', life: 3000 });
                             break;
+                        case 'event_not_found':
+                            // Remove event from list
+                            this.eventList = this.eventList.filter(val => val.event_id !== this.selectedEvent!.event_id);
+                            this.showWithdrawEventDialog = false;
+                            this.messageService.add({ severity: 'error', summary: 'Oh no', detail: 'Looks like the host has cancelled the event', life: 3000 });
+                    }
+                    break;
+                case 500:
+                    this.messageService.add({ severity: 'error', summary: 'Unsuccessful', detail: 'An error occurred, please try again', life: 3000 });
+                    break;
+            }
+        });
+    }
+
+    deleteEvent(event: Event){
+        this.showDeleteEventDialog = true;
+        this.selectedEvent = event;
+    }
+
+    confirmDeleteEvent(){
+        this.eventService.deleteEvent(this.selectedEvent!).then(response => {
+            switch (response.status) {
+                case 200:
+                    // Remove event from list
+                    this.eventList = this.eventList.filter(val => val.event_id !== this.selectedEvent!.event_id);
+                    this.showDeleteEventDialog = false;
+                    this.messageService.add({ severity: 'success', summary: 'Delete successful', detail: 'You have successfully deleted the event', life: 3000 });
+                    break;
+                case 401:
+                    this.redirect("/login");
+                    break;
+                case 400:
+                    switch (response.error.message) {
                         case 'event_not_found':
                             // Remove event from list
                             this.eventList = this.eventList.filter(val => val.event_id !== this.selectedEvent!.event_id);
