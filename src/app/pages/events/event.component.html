@@ -1,20 +1,21 @@
 <div class="col-12 pb-0 pt-0">
+    <p-toast></p-toast>
     <div
         class="align-items-center surface-0 flex-grow-1 justify-content-between hidden flex flex-column xl:flex-row xl:align-items-start p-0 gap-4 xl:ml-8 xl:mr-8 xl:pl-8 xl:pr-8">
         <ul class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
             <li>
-                <a pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 line-height-3" (click)="loadEventList()" [ngClass]="loadedEventList ? 'font-medium' : 'font-normal'">
-                   <span>View All Events</span>
+                <a pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 line-height-3" (click)="loadEventList()" [ngClass]="loadedEventList ? 'font-bold' : 'font-normal'">
+                   <span>All Events</span>
                 </a>
             </li>
             <li>
-                <a pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 line-height-3" (click)="loadHostingEventList()" [ngClass]="loadedHostEventList ? 'font-medium' : 'font-normal'">
-                    <span>View Your Events</span>
+                <a pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 line-height-3" (click)="loadHostingEventList()" [ngClass]="loadedHostEventList ? 'font-bold' : 'font-normal'">
+                    <span>Your Events</span>
                 </a>
             </li>
             <li>
-                <a pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 line-height-3" (click)="loadAttendingEventList()" [ngClass]="loadedAttendingEventList ? 'font-medium' : 'font-normal'">
-                    <span>View Attending Events</span>
+                <a pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 line-height-3" (click)="loadAttendingEventList()" [ngClass]="loadedAttendingEventList ? 'font-bold' : 'font-normal'">
+                    <span>Attending Events</span>
                 </a>
             </li>
         </ul>
@@ -61,12 +62,31 @@
                     </div>
                     <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
                         <span class="text-2xl font-semibold">{{event.attendees}} / {{event.capacity}}</span>
-                        <button pButton class="align-self-end mt-3 p-button-rounded"> Join </button>
+                        
+                        <div *ngIf="loadedEventList">
+                            <button *ngIf="event.attendees < event.capacity" pButton class="align-self-end mt-3 p-button-rounded" (click)="joinEvent(event)"> Join </button>
+                            <button *ngIf="event.attendees >= event.capacity" pButton class="align-self-end mt-3 p-button-rounded" disabled> Full </button>
+                        </div>
+
+                        <div *ngIf="loadedAttendingEventList">
+                            <button pButton class="align-self-end mt-3 p-button-rounded p-button-danger" (click)="quitEvent(event)"> Withdraw </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         </ng-template>
 </p-dataView>
+
+<p-dialog [(visible)]="showDeleteEventDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span>Are you sure you want to withdraw from <b>{{selectedEvent?.title}}</b> event?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="showDeleteEventDialog = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmQuitEvent()"></button>
+    </ng-template>
+</p-dialog>
 
 <!--Put this into ng-template later-->
