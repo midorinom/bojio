@@ -8,4 +8,5 @@ export interface Event{
     location: string;
     capacity: number;
     price: number;
+    attendees?: number;
 }

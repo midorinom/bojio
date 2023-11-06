@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { DemoMessage } from '../interface/demoMessage';
 import { ServiceURL } from './service-config';
 import { Event } from '../interface/events';
 
