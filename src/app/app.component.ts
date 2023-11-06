@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { LayoutService } from './layout/service/app.layout.service';
 import { AccountService } from './service/account.service';
+import { FacadeService } from './service/facade.service';
 
 @Component({
     selector: 'app-root',
@@ -10,7 +11,7 @@ import { AccountService } from './service/account.service';
 })
 export class AppComponent implements OnInit{
 
-    constructor(private primengConfig: PrimeNGConfig,public layoutService: LayoutService, public router: Router, private ngZone: NgZone, private accountService: AccountService) { }
+    constructor(private primengConfig: PrimeNGConfig,public layoutService: LayoutService, public facadeService: FacadeService) { }
 
     loggedIn:boolean | undefined;
 
@@ -18,36 +19,12 @@ export class AppComponent implements OnInit{
         this.checkLoginSession();
         this.primengConfig.ripple = true;
     }
-    
-    redirect(to:string){
-        this.ngZone.run(()=>this.router.navigateByUrl(to).then(()=> {
-            window.location.reload();
-        }));
-    }
 
     logout(){
-        this.accountService.logout().then(response => {
-            if(response){
-                sessionStorage.removeItem("loggedIn");
-                sessionStorage.clear();
-                this.redirect("/");
-            }
-        });
+        this.facadeService.logout();
     }
 
     private checkLoginSession(){
-        // console.log(sessionStorage.getItem("loggedIn"));
-        this.loggedIn = sessionStorage.getItem("loggedIn") ? true : false;
-
-        // this.accountService.getSession().then(response => {
-        //     switch (response.status) {
-        //         case 200:
-        //             this.loggedIn = true
-        //             break;
-        //         case 401:
-        //             this.loggedIn = false
-        //             break;
-        //     }
-        // });
+        this.loggedIn = this.facadeService.checkLoginStatus();
     }
 }

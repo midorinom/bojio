@@ -51,14 +51,18 @@ export class FacadeService {
         });
     }
 
-    getProfileDetails() : string[]{
-        this.accountService.getProfile().then(response => {
+    logout():void{
+        this.accountService.logout().then(response => {
             if(response){
-                return [response.body.data.username,response.body.data.email]
+                sessionStorage.removeItem("loggedIn");
+                sessionStorage.clear();
+                this.redirectReload("/");
             }
-            return [];
         });
-        return [];
+    }
+
+    getProfileDetails(){
+        return this.accountService.getProfile();
     }
 
     updateProfileDetails(registerUser: User): void{

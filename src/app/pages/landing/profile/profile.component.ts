@@ -29,10 +29,10 @@ export class ProfileComponent {
     }
 
     populateProfileDetails(): void{
-        let profileDetails : string[] = this.facadeService.getProfileDetails();
-
-        this.username = profileDetails[0];
-        this.password = profileDetails[1];
+        this.facadeService.getProfileDetails().then(result => {
+            this.username = result.body.data.username;
+            this.email = result.body.data.email;
+        });
     }
 
     editProfile():void{

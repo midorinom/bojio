@@ -40,3 +40,5 @@ src/assets/demo/styles/badges.css
 
 # Request url config
 src/app/service/service-config.ts
+
+coverage
