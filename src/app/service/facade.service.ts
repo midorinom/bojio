@@ -51,6 +51,16 @@ export class FacadeService {
         });
     }
 
+    logout():void{
+        this.accountService.logout().then(response => {
+            if(response){
+                sessionStorage.removeItem("loggedIn");
+                sessionStorage.clear();
+                this.redirectReload("/");
+            }
+        });
+    }
+
     getProfileDetails(){
         return this.accountService.getProfile();
     }
