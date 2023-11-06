@@ -26,8 +26,6 @@ export class CreateEventComponent implements OnInit{
     }
 
     createEventClick():void{
-
-        
         let startDate: string = this.convertDateFormat(this.startDateEndDate[0]) ?? "";
         let endDate: string = this.convertDateFormat(this.startDateEndDate[1]) ?? ""; 
 

@@ -51,14 +51,8 @@ export class FacadeService {
         });
     }
 
-    getProfileDetails() : string[]{
-        this.accountService.getProfile().then(response => {
-            if(response){
-                return [response.body.data.username,response.body.data.email]
-            }
-            return [];
-        });
-        return [];
+    getProfileDetails(){
+        return this.accountService.getProfile();
     }
 
     updateProfileDetails(registerUser: User): void{
