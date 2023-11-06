@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LandingComponent } from './pages/landing/landing.component';
 import { DemoCrudComponent } from './pages/demo_crud/demo-crud.component';
 import { LoginComponent } from './pages/landing/login/login.component';
 import { RegisterComponent } from './pages/landing/register/register.component';
@@ -22,7 +21,7 @@ import { mustLoginGuard, mustLoggedOutGuard, bothOKGuard } from './service/route
             { path: 'register', component: RegisterComponent, canActivate: [mustLoggedOutGuard] },
             { path: 'profile', component: ProfileComponent, canActivate: [mustLoginGuard] },
             { path: 'event/create', component: CreateEventComponent, canActivate: [mustLoginGuard] },
-            { path: 'event/edit', component: EditEventComponent, canActivate: [mustLoginGuard] },
+            //{ path: 'event/edit', component: EditEventComponent, canActivate: [mustLoginGuard] },
             
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
     ],
