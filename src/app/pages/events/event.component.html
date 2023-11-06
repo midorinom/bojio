@@ -1,0 +1,72 @@
+<div class="col-12 pb-0 pt-0">
+    <div
+        class="align-items-center surface-0 flex-grow-1 justify-content-between hidden flex flex-column xl:flex-row xl:align-items-start p-0 gap-4 xl:ml-8 xl:mr-8 xl:pl-8 xl:pr-8">
+        <ul class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
+            <li>
+                <a pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 line-height-3" (click)="loadEventList()" [ngClass]="loadedEventList ? 'font-medium' : 'font-normal'">
+                   <span>View All Events</span>
+                </a>
+            </li>
+            <li>
+                <a pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 line-height-3" (click)="loadHostingEventList()" [ngClass]="loadedHostEventList ? 'font-medium' : 'font-normal'">
+                    <span>View Your Events</span>
+                </a>
+            </li>
+            <li>
+                <a pRipple class="flex m-0 md:ml-5 px-0 py-3 text-900 line-height-3" (click)="loadAttendingEventList()" [ngClass]="loadedAttendingEventList ? 'font-medium' : 'font-normal'">
+                    <span>View Attending Events</span>
+                </a>
+            </li>
+        </ul>
+        <div
+            class="flex justify-content-between lg:block lg:border-top-none surface-border py-0 mt-0">
+            <button class="p-element p-ripple p-button-rounded border-none ml-5 font-light line-height-2 p-button p-component" style="background-color:gray" (click)="this.redirect('event/create')">
+                <span class="p-button-label font-semibold"><span class="pr-2"><i class="pi pi-plus"></i></span>Host an Event</span>
+                </button>
+        </div>
+    </div>
+</div><hr>
+
+<p-dataView #dv [value]="eventList">
+    <ng-template let-event pTemplate="listItem">
+        <div class="col-12">
+            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 xl:ml-8 xl:mr-8 xl:pl-8 xl:pr-8">
+                <div
+                    class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                    <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                        <div class="flex col-12 p-0">
+        
+                        <div class="text-2xl font-bold text-900">
+                            {{event.title}}
+                        </div>
+                        
+                        <button pButton icon="pi pi-pencil" class="p-button-text p-0" (click)="this.redirect('/event/edit')"></button>
+                    </div>
+                        <div class="font-semibold text-800">{{event.description}}</div>
+                        <div class="flex align-items-center gap-3">
+                            <span class="flex align-items-center gap-2">
+                                <i class="pi pi-map-marker"></i>
+                                <span class="font-semibold">{{event.location}}</span>
+                                <i class="pi pi-dollar"></i>
+                                <span class="font-semibold">{{event.price}}</span>
+                            </span>
+                        </div>
+                        <div class="flex align-items-center gap-3">
+                            <span class="flex align-items-center gap-2">
+                                <i class="pi pi-clock"></i>
+                                <span class="font-semibold">{{event.start_date}} - {{event.end_date}}</span>
+                            </span>
+                        </div>
+        
+                    </div>
+                    <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                        <span class="text-2xl font-semibold">{{event.attendees}} / {{event.capacity}}</span>
+                        <button pButton class="align-self-end mt-3 p-button-rounded"> Join </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </ng-template>
+</p-dataView>
+
+<!--Put this into ng-template later-->

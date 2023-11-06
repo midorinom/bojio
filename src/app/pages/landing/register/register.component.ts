@@ -16,8 +16,6 @@ export class RegisterComponent {
 
     constructor(public layoutService: LayoutService, public router: Router, private accountService: AccountService) { }
 
-    
-
     ngOnInit(): void {
         
     }

@@ -46,7 +46,7 @@ export class AccountService {
     }
 
     async editPassword(account: User){
-        return await lastValueFrom(this.http.post<any>(ServiceURL + 'change_password',account, { observe: 'response' }))
+        return await lastValueFrom(this.http.post<any>(ServiceURL + 'change_password',account, {withCredentials: true, observe: 'response' }))
         .then(response => response)
         .catch(error => error)
     }

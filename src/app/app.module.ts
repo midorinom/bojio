@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule, DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppLayoutModule } from './layout/app.layout.module';
@@ -28,6 +28,13 @@ import { LoginComponent } from './pages/landing/login/login.component';
 import { RegisterComponent } from './pages/landing/register/register.component';
 import { AccountService } from './service/account.service';
 import { ProfileComponent } from './pages/landing/profile/profile.component';
+import { EventComponent } from './pages/events/event.component';
+import { EditEventComponent } from './pages/events/edit/edit-event.component';
+import { CreateEventComponent } from './pages/events/create/create-event.component';
+import { DataViewModule } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+import { CalendarModule } from 'primeng/calendar';
+import { EventService } from './service/event.service';
 
 @NgModule({
     declarations: [
@@ -37,7 +44,10 @@ import { ProfileComponent } from './pages/landing/profile/profile.component';
         DemoCrudComponent,
         LoginComponent,
         RegisterComponent,
-        ProfileComponent
+        ProfileComponent,
+        EventComponent,
+        EditEventComponent,
+        CreateEventComponent
     ],
     imports: [
         AppRoutingModule,
@@ -60,11 +70,14 @@ import { ProfileComponent } from './pages/landing/profile/profile.component';
         DropdownModule,
         RadioButtonModule,
         InputNumberModule,
-        RatingModule
+        RatingModule,
+        DataViewModule,
+        TagModule,
+        CalendarModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        DemoService, AccountService
+        DemoService, AccountService, EventService, DatePipe
     ],
     bootstrap: [AppComponent],
 })
