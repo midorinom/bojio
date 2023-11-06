@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { DemoService } from './service/demo.service';
-import { LandingComponent } from './pages/landing/landing.component';
 import { ButtonModule } from 'primeng/button';
 import { ChartModule } from 'primeng/chart';
 import { DividerModule } from 'primeng/divider';
@@ -42,7 +41,6 @@ import { MessageService } from 'primeng/api';
     declarations: [
         AppComponent,
         NotfoundComponent,
-        LandingComponent,
         DemoCrudComponent,
         LoginComponent,
         RegisterComponent,

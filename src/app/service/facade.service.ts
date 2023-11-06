@@ -51,6 +51,50 @@ export class FacadeService {
         });
     }
 
+    getProfileDetails() : string[]{
+        this.accountService.getProfile().then(response => {
+            if(response){
+                return [response.body.data.username,response.body.data.email]
+            }
+            return [];
+        });
+        return [];
+    }
+
+    updateProfileDetails(registerUser: User): void{
+        this.accountService.updateProfile(registerUser).then(response => {
+            if(response){
+                switch(response.status){
+                    case 200:
+                        this.redirectWithMessage("/login","success","Successfully Updated Profile", "You have successfully updated profile.", 3000);
+                        break;
+
+                    default:
+                        let errorMessage = response.error.message;
+                        this.displayToast("error","Oops, Error!", errorMessage, 3000);
+                        break;
+                }
+            }
+        });
+    }
+
+    updatePassword(registerUser: User): void{
+        this.accountService.editPassword(registerUser).then(response => {
+            if(response){
+                switch(response.status){
+                    case 200:
+                        this.redirectWithMessage("/login","success","Successfully Changed Password", "You have successfully changed password.", 3000);
+                        break;
+
+                    default:
+                        let errorMessage = response.error.message;
+                        this.displayToast("error","Oops, Error!", errorMessage, 3000);
+                        break;
+                }
+            }
+        });
+    }
+
     getLoginSession(): void{
         this.accountService.getSession().then(response => {
             switch (response.status) {

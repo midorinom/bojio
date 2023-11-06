@@ -4,6 +4,7 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AccountService } from 'src/app/service/account.service';
 import { User } from 'src/app/interface/user';
 import { MessageService } from 'primeng/api';
+import { FacadeService } from 'src/app/service/facade.service';
 
 @Component({
     selector: 'profile',
@@ -21,32 +22,17 @@ export class ProfileComponent {
         email: this.email,
     };
 
-    constructor(public layoutService: LayoutService, public router: Router, private accountService: AccountService, private messageService: MessageService) { }
+    constructor(public layoutService: LayoutService, private facadeService : FacadeService) { }
 
     ngOnInit(): void {
-        this.verifyLoginDetails();
         this.populateProfileDetails();
     }
 
-
-    verifyLoginDetails():void{
-        try{
-            this.loginUser = JSON.parse(sessionStorage["loggedIn"]);
-
-            console.log(this.loginUser);
-        }catch{
-            this.router.navigateByUrl("/");
-        }
-
-    }
-
     populateProfileDetails(): void{
-        this.accountService.getProfile().then(response => {
-            if(response){
-                this.username = response.body.data.username;
-                this.email = response.body.data.email;
-            }
-        });
+        let profileDetails : string[] = this.facadeService.getProfileDetails();
+
+        this.username = profileDetails[0];
+        this.password = profileDetails[1];
     }
 
     editProfile():void{
@@ -57,14 +43,7 @@ export class ProfileComponent {
             email: this.email,
         }
 
-        this.accountService.updateProfile(registerUser).then(response => {
-            if(response){
-
-                
-
-                console.log(response);
-            }
-        });
+        this.facadeService.updateProfileDetails(registerUser);
     }
 
     editPassword(): void{
@@ -75,11 +54,7 @@ export class ProfileComponent {
             email: this.email,
         }
 
-        this.accountService.editPassword(registerUser).then(response => {
-            if(response){
-                console.log(response);
-            }
-        });
+        this.facadeService.updatePassword(registerUser);
     }
 
 }
