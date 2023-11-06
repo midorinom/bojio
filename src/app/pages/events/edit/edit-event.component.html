@@ -1,4 +1,57 @@
-<div class="px-4 mx-0 lg:mx-8">
+<p-toast></p-toast>
+<p-dialog [(visible)]="showEditEventDialog" header="Update event" [closeOnEscape]="false" [closable]="false" (onShow)="onShow()" [modal]="true" [style]="{width:'700px'}">
+    
+    <div class="grid justify-content-center">
+        <div class="col-12 pt-6 pb-8">
+            <div class="col-12 p-1 flex align-items-center">
+                <div class="field col-12 p-0">
+                    <label for="nickname" class="font-medium text-900 pb-1">Title</label>
+                    <input type="text" pinputtext="" placeholder="Title" class="p-inputtext p-component p-element"
+                        style="width:100%;" required [(ngModel)]="title">
+                </div>
+            </div>
+            <div class="col-12 p-1 flex align-items-center">
+                <div class="field col-12 p-0">
+                    <label for="nickname" class="font-medium text-900 pb-1">Description</label>
+                    <textarea rows="2" class="p-inputtext p-component p-element" style="width:100%;"
+                        placeholder="Description" required [(ngModel)]="description" required [(ngModel)]="description"></textarea>
+                </div>
+            </div>
+            <div class="col-12 p-1 flex align-items-center">
+                <div class="field col-12 p-0">
+                    <label for="nickname" class="font-medium text-900 pb-1">Location</label>
+                    <input type="text" pinputtext="" placeholder="Location" class="p-inputtext p-component p-element"
+                        style="width:100%;" required [(ngModel)]="location">
+                </div>
+            </div>
+            <div class="col-12 p-1 flex align-items-center">
+                <div class="field col-12 p-0">
+                    <label for="nickname" class="font-medium text-900 pb-1">Start Date - End Date</label>
+                    <p-calendar selectionMode="range" [readonlyInput]="true" [style]="{'width':'100%'}"
+                        placeholder="{{start_date_string}} - {{end_date_string}}" [(ngModel)]="startDateEndDate"></p-calendar>
+                </div>
+            </div>
+            <div class="col-12 p-1 flex align-items-center gap-1">
+                <span class="p-input-icon-left field col-6 p-0">
+                    <i class="pi pi-user"></i>
+                    <input type="number" pinputtext="" placeholder="" class="p-inputtext p-component p-element"
+                        style="width:100%;" required [(ngModel)]="capacity">
+                </span>
+                <span class="p-input-icon-left field col-6 p-0">
+                    <i class="pi pi-dollar"></i>
+                    <input type="number" pinputtext="" placeholder="" class="p-inputtext p-component p-element"
+                        style="width:100%;" required [(ngModel)]="price">
+                </span>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="closeDialog()"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="updateEvent()"></button>
+    </ng-template>
+</p-dialog>
+
+<!-- <div class="px-4 mx-0 lg:mx-8">
     <div class="col-12 text-center ">
         <h2 class="text-900 font-normal mb-2">Edit Your Event</h2>
     </div>
@@ -7,7 +60,7 @@
         <div class="col-4">
             <div class="col-12 p-1 flex align-items-center">
                 <div class="field col-12 p-0">
-                    <label for="nickname" class="font-medium text-900 pb-1">Title</label>
+                    <label for="nickname" class="font-medium text-900 pb-1">{{selectedEvent.title}}</label>
                     <input
                             type="text" pinputtext="" placeholder="Title"
                             class="p-inputtext p-component p-element" style="width:100%;" required>
@@ -63,3 +116,5 @@
         </div>
     </div>
 </div>
+
+</div> -->

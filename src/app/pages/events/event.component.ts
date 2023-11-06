@@ -19,7 +19,8 @@ export class EventComponent implements OnInit{
     loadedAttendingEventList: boolean = false;
     showWithdrawEventDialog: boolean = false;
     showDeleteEventDialog: boolean = false;
-    selectedEvent?: Event
+    showEditEventDialog: boolean = false;
+    selectedEvent: Event = {}
 
     constructor(public layoutService: LayoutService, public router: Router, private ngZone: NgZone, private eventService: EventService, private messageService: MessageService) { }
 
@@ -105,6 +106,9 @@ export class EventComponent implements OnInit{
                             this.messageService.add({ severity: 'error', summary: 'Oh no', detail: 'Looks like the host has cancelled the event', life: 3000 });
                             // Remove event from list
                             this.eventList = this.eventList.filter(val => val.event_id !== event.event_id);
+                            break;
+                        case 'event_has_started':
+                            this.messageService.add({ severity: 'error', summary: 'Oh no', detail: 'Looks like the event has already ended', life: 3000 });
                     }
                     break;
                 case 500:
@@ -184,6 +188,11 @@ export class EventComponent implements OnInit{
                     break;
             }
         });
+    }
+
+    editEvent(event: Event) {
+        this.selectedEvent = event;
+        this.showEditEventDialog = true;
     }
 
     redirect(to:string){
