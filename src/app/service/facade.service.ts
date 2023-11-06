@@ -4,7 +4,9 @@ import { MessageService } from 'primeng/api';
 import { AccountService } from './account.service';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({
+    providedIn:'root'
+})
 export class FacadeService {
 
     constructor(private accountService: AccountService, private messageService: MessageService, private ngZone: NgZone, private router: Router){}
@@ -16,9 +18,6 @@ export class FacadeService {
     login(loginUser: User) : void{
         this.accountService.login(loginUser).then(response => {
             if(response){
-
-                console.log(response);
-
                 switch(response.status){
                     case 200:
                         sessionStorage.setItem("loggedIn", "true");
@@ -37,8 +36,17 @@ export class FacadeService {
     register(registerUser: User): void{
         this.accountService.register(registerUser).then(response => {
             if(response){
+                switch(response.status){
+                    case 200:
+                        sessionStorage.setItem("loggedIn", "true");
+                        this.redirectWithMessage("/login","success","Successfully Created Account", "Welcome to Bojio! You have created an account!", 3000);
+                        break;
 
-                this.router.navigateByUrl("login");
+                    default:
+                        let errorMessage = response.error.message;
+                        this.displayToast("error","Oops, Error!", errorMessage, 3000);
+                        break;
+                }
             }
         });
     }
@@ -74,16 +82,15 @@ export class FacadeService {
         });
     }
 
-    
-    private redirectWithMessage(to:string, severityType: string, title: string, message: string, duration: number){
+    redirectReload(to: string){
         this.ngZone.run(()=>this.router.navigateByUrl(to).then(()=> {
-            this.displayToast(severityType, title, message, duration);
+            window.location.reload();
         }));
     }
 
-    private redirectReload(to: string){
+    private redirectWithMessage(to:string, severityType: string, title: string, message: string, duration: number){
         this.ngZone.run(()=>this.router.navigateByUrl(to).then(()=> {
-            window.location.reload();
+            this.displayToast(severityType, title, message, duration);
         }));
     }
 

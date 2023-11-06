@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AccountService } from 'src/app/service/account.service';
 import { User } from 'src/app/interface/user';
+import { FacadeService } from 'src/app/service/facade.service';
 
 @Component({
     selector: 'register',
@@ -14,7 +15,7 @@ export class RegisterComponent {
     password: string = "";
     email: string = "";
 
-    constructor(public layoutService: LayoutService, public router: Router, private accountService: AccountService) { }
+    constructor(public layoutService: LayoutService, private facadeService : FacadeService) { }
 
     ngOnInit(): void {
         
@@ -27,7 +28,7 @@ export class RegisterComponent {
             email: this.email,
         }
 
-        
+        this.facadeService.register(registerUser);
 
     }
 }
