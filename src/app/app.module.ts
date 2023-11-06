@@ -35,6 +35,8 @@ import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { CalendarModule } from 'primeng/calendar';
 import { EventService } from './service/event.service';
+import { FacadeService } from './service/facade.service';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [
@@ -77,7 +79,7 @@ import { EventService } from './service/event.service';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        DemoService, AccountService, EventService, DatePipe
+        DemoService,AccountService, EventService, FacadeService, DatePipe, MessageService
     ],
     bootstrap: [AppComponent],
 })

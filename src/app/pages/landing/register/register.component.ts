@@ -21,23 +21,13 @@ export class RegisterComponent {
     }
 
     registerButton_Click():void{
-
-        let registerResponse : any;
-
         let registerUser: User = {
             username: this.username,
             password: this.password,
             email: this.email,
         }
 
-        this.accountService.register(registerUser).then(response => {
-            if(response){
-                registerResponse = response;
-                console.log(registerResponse)
-
-                this.router.navigateByUrl("login");
-            }
-        });
+        
 
     }
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AccountService } from 'src/app/service/account.service';
 import { User } from 'src/app/interface/user';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'profile',
@@ -20,7 +21,7 @@ export class ProfileComponent {
         email: this.email,
     };
 
-    constructor(public layoutService: LayoutService, public router: Router, private accountService: AccountService) { }
+    constructor(public layoutService: LayoutService, public router: Router, private accountService: AccountService, private messageService: MessageService) { }
 
     ngOnInit(): void {
         this.verifyLoginDetails();
@@ -58,6 +59,9 @@ export class ProfileComponent {
 
         this.accountService.updateProfile(registerUser).then(response => {
             if(response){
+
+                
+
                 console.log(response);
             }
         });
