@@ -61,6 +61,10 @@
         
                     </div>
                     <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                        <div *ngIf="loadedHostEventList">
+                            <button pButton icon="pi pi-trash" class="p-button-text p-0" (click)="deleteEvent(event)" style="color:red;justify-content:end;"> </button>
+                        </div>
+
                         <span class="text-2xl font-semibold">{{event.attendees}} / {{event.capacity}}</span>
                         
                         <div *ngIf="loadedEventList">
@@ -78,7 +82,7 @@
         </ng-template>
 </p-dataView>
 
-<p-dialog [(visible)]="showDeleteEventDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+<p-dialog [(visible)]="showWithdrawEventDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
     <div class="flex align-items-center justify-content-center">
         <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
         <span>Are you sure you want to withdraw from <b>{{selectedEvent?.title}}</b> event?</span>
@@ -86,6 +90,17 @@
     <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="showDeleteEventDialog = false"></button>
         <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmQuitEvent()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="showDeleteEventDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span>Are you sure you want to delete this event, <b>{{selectedEvent?.title}}</b>?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="showDeleteEventDialog = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteEvent()"></button>
     </ng-template>
 </p-dialog>
 
