@@ -15,7 +15,7 @@ describe('ProfileComponent', () => {
             imports: [RouterTestingModule, ToastModule],
             declarations: [ProfileComponent],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [FacadeService, AccountService, MessageService]
+            providers: [FacadeService, AccountService, MessageService, HttpClient, HttpHandler]
         }),
     );
 

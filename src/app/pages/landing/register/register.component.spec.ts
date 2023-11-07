@@ -15,7 +15,7 @@ describe('RegisterComponent', () => {
             imports: [RouterTestingModule, ToastModule],
             declarations: [RegisterComponent],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [FacadeService, AccountService, MessageService]
+            providers: [FacadeService, AccountService, MessageService, HttpClient, HttpHandler]
         }),
     );
 
