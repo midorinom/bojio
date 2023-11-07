@@ -9,19 +9,19 @@ import { AccountService } from 'src/app/service/account.service';
 import { FacadeService } from 'src/app/service/facade.service';
 
 describe('AccountService', () => {
-    beforeEach(() =>
+    let accountService : AccountService;
+
+    beforeEach(() =>{
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, ToastModule],
-            declarations: [AccountService],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: []
-        }),
-    );
+            providers: [  AccountService, MessageService, HttpClient, HttpHandler]
+        })
+
+        
+        accountService = TestBed.inject(AccountService);
+    });
 
     it('should create the app', () => {
-        const fixture = TestBed.createComponent(AccountService);
-        const app = fixture.componentInstance;
-        expect(app).toBeTruthy();
+        expect(accountService).toBeDefined();
     });
     
 });

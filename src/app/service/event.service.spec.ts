@@ -10,19 +10,20 @@ import { FacadeService } from 'src/app/service/facade.service';
 import { EventService } from './event.service';
 
 describe('EventService', () => {
-    beforeEach(() =>
+
+    let eventService : EventService;
+
+    beforeEach(() =>{
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, ToastModule],
-            declarations: [EventService],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: []
-        }),
-    );
+            providers: [ EventService , MessageService, HttpClient, HttpHandler]
+        })
+
+        
+        eventService = TestBed.inject(EventService);
+    });
 
     it('should create the app', () => {
-        const fixture = TestBed.createComponent(EventService);
-        const app = fixture.componentInstance;
-        expect(app).toBeTruthy();
+        expect(eventService).toBeDefined();
     });
     
 });

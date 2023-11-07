@@ -6,14 +6,18 @@ import { ToastModule } from 'primeng/toast';
 import { AccountService } from 'src/app/service/account.service';
 import { FacadeService } from 'src/app/service/facade.service';
 import { CreateEventComponent } from './create-event.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { EventService } from 'src/app/service/event.service';
+import { DatePipe } from '@angular/common';
+import { CalendarModule } from 'primeng/calendar';
 
 describe('CreateEventComponent', () => {
     beforeEach(() =>
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, ToastModule],
+            imports: [RouterTestingModule, ToastModule, CalendarModule],
             declarations: [CreateEventComponent],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [FacadeService, AccountService, MessageService]
+            providers: [EventService, HttpClient, HttpHandler, DatePipe]
         }),
     );
 

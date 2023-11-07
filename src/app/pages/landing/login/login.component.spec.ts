@@ -15,7 +15,7 @@ describe('LoginComponent', () => {
             imports: [RouterTestingModule, ToastModule],
             declarations: [LoginComponent],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [FacadeService, AccountService, MessageService]
+            providers: [FacadeService, AccountService, MessageService, HttpClient, HttpHandler]
         }),
     );
 

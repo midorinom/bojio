@@ -7,14 +7,18 @@ import { ToastModule } from 'primeng/toast';
 import { AccountService } from 'src/app/service/account.service';
 import { FacadeService } from 'src/app/service/facade.service';
 import { EditEventComponent } from './edit-event.component';
+import { EventService } from 'src/app/service/event.service';
+import { CalendarModule } from 'primeng/calendar';
+import { DatePipe } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
 
 describe('EditEventComponent', () => {
     beforeEach(() =>
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, ToastModule],
+            imports: [RouterTestingModule, ToastModule,CalendarModule, DialogModule],
             declarations: [EditEventComponent],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [FacadeService, AccountService, MessageService]
+            providers: [EventService, HttpClient, HttpHandler, DatePipe]
         }),
     );
 

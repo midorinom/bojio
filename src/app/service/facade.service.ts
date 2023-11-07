@@ -132,8 +132,12 @@ export class FacadeService {
 
     redirectReload(to: string){
         this.ngZone.run(()=>this.router.navigateByUrl(to).then(()=> {
-            window.location.reload();
+            this.pageReload();
         }));
+    }
+
+    private pageReload(){
+        window.location.reload();
     }
 
     private redirectWithMessage(to:string, severityType: string, title: string, message: string, duration: number){

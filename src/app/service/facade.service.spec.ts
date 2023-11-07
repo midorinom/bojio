@@ -8,20 +8,21 @@ import { AppComponent } from 'src/app/app.component';
 import { AccountService } from 'src/app/service/account.service';
 import { FacadeService } from 'src/app/service/facade.service';
 
-describe('FacadeService', () => {
-    beforeEach(() =>
-        TestBed.configureTestingModule({
-            imports: [RouterTestingModule, ToastModule],
-            declarations: [FacadeService],
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
-            providers: [ AccountService, MessageService]
-        }),
-    );
+let facadeService : FacadeService;
 
-    it('should create the app', () => {
-        const fixture = TestBed.createComponent(FacadeService);
-        const app = fixture.componentInstance;
-        expect(app).toBeTruthy();
+describe('FacadeService', () => {
+
+    beforeEach(() =>{
+        TestBed.configureTestingModule({
+            providers: [ FacadeService , AccountService, MessageService, HttpClient, HttpHandler]
+        })
+
+        
+        facadeService = TestBed.inject(FacadeService);
+    });
+
+    it('should create service', () => {
+        expect(facadeService).toBeDefined();
     });
     
 });
